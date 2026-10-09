@@ -177,6 +177,8 @@ function initHeroSlider() {
 
     let activeIndex = 0;
     let timer;
+    const motionPreference =
+        window.matchMedia("(prefers-reduced-motion: reduce)");
 
     function showSlide(index) {
 
@@ -202,6 +204,10 @@ function initHeroSlider() {
 
     function restartTimer() {
         window.clearInterval(timer);
+        if (motionPreference.matches) {
+            return;
+        }
+
         timer = window.setInterval(() => {
             showSlide(activeIndex + 1);
         }, 6000);
@@ -230,6 +236,8 @@ function initHeroSlider() {
             restartTimer();
         }
     });
+
+    motionPreference.addEventListener("change", restartTimer);
 
     showSlide(0);
     restartTimer();

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +12,13 @@
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
         rel="stylesheet"
     >
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    >
+
+    <link rel="stylesheet" href="css/event-pages.css">
 
     <style>
         * {
@@ -26,6 +33,7 @@
         }
 
         .page {
+            width: 100%;
             min-height: 100vh;
             padding: 30px 20px 45px;
             background:
@@ -34,29 +42,25 @@
         }
 
         .container-main {
+            width: 100%;
             max-width: 1250px;
-            margin: auto;
+            margin: 0 auto;
         }
 
-        /* Heading */
+        /* Main Heading */
         .heading {
+            width: 100%;
             text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .heading small {
-            font-family: Arial, sans-serif;
-            font-size: 13px;
-            letter-spacing: 4px;
-            color: #a66a27;
+            margin: 0 auto 35px;
         }
 
         .heading h1 {
-            margin: 8px 0 0;
-            font-size: clamp(42px, 6vw, 75px);
+            margin: 0;
+            font-size: clamp(36px, 6vw, 75px);
             font-weight: bold;
-            line-height: 1;
+            line-height: 1.1;
             text-transform: uppercase;
+            text-align: center;
         }
 
         .heading .line {
@@ -67,244 +71,374 @@
         }
 
         /* Guest Section */
+        .guest-section {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(180px, 0.8fr) minmax(0, 1fr);
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
         .guest-box {
-            background: #fff;
+            width: 100%;
+            max-width: 390px;
+            margin: 0 auto;
             padding: 8px;
+            background: #fff;
+            border: 1px solid #dfc88d;
             border-radius: 18px;
             box-shadow: 0 12px 35px #5d321d20;
-            border: 1px solid #dfc88d;
+            text-align: center;
         }
 
         .guest-box img {
-            width: 100%;
-            height: 390px;
-            object-fit: cover;
-            border-radius: 13px;
             display: block;
+            width: 100%;
+            height: 360px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 13px;
         }
 
         .guest-name {
-            text-align: center;
-            padding: 12px 5px 5px;
+            padding: 12px 5px 3px;
             font-family: Arial, sans-serif;
             font-size: 14px;
             font-weight: 600;
+            line-height: 1.5;
+            text-align: center;
+            overflow-wrap: anywhere;
         }
 
-        /* Center */
+        .guest-name + .guest-name {
+            padding-top: 3px;
+            padding-bottom: 8px;
+            color: #8c6b4a;
+            font-size: 12px;
+        }
+
+        /* Center Text */
         .center-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
             text-align: center;
-            padding: 20px;
+            padding: 20px 5px;
         }
 
         .center-text h2 {
-            font-size: 34px;
-            margin-bottom: 8px;
+            margin: 0 0 12px;
             color: #813d1c;
+            font-size: clamp(27px, 3vw, 40px);
+            font-weight: bold;
+            line-height: 1.2;
+            text-align: center;
         }
 
         .center-text p {
+            margin: 0;
+            color: #8c6b4a;
             font-family: Arial, sans-serif;
             font-size: 13px;
-            color: #8c6b4a;
-            margin: 0;
+            text-align: center;
         }
 
         /* Gallery */
         .gallery {
-            margin-top: 40px;
+            width: 100%;
+            max-width: 1100px;
+            margin: 45px auto 0;
+        }
+
+        .gallery .row {
+            justify-content: center;
+            align-items: stretch;
         }
 
         .photo {
+            width: 100%;
             height: 250px;
             overflow: hidden;
-            border-radius: 15px;
             border: 5px solid #fff;
+            border-radius: 15px;
             box-shadow: 0 8px 25px #5d321d20;
         }
 
         .photo img {
+            display: block;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: block;
-            transition: .4s ease;
+            object-position: center;
+            transition: transform 0.4s ease;
         }
 
         .photo:hover img {
-            transform: scale(1.06);
+            transform: scale(1.05);
         }
 
+        /* Moderate Entrance Animation */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .heading,
+        .guest-box,
+        .center-text,
+        .gallery {
+            animation: fadeUp 0.65s ease both;
+        }
+
+        .guest-box:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .center-text {
+            animation-delay: 0.2s;
+        }
+
+        .guest-box:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Tablet */
         @media (max-width: 991px) {
-            .guest-box img {
-                height: 330px;
-            }
-
-            .center-text {
-                padding: 5px;
-            }
-        }
-
-        @media (max-width: 575px) {
             .page {
-                padding: 20px 12px 30px;
+                padding: 25px 18px 35px;
+            }
+
+            .guest-section {
+                grid-template-columns: minmax(0, 1fr) minmax(140px, 0.7fr) minmax(0, 1fr);
+                gap: 14px;
             }
 
             .guest-box img {
-                height: 300px;
+                height: 290px;
+            }
+
+            .guest-name {
+                font-size: 12px;
+            }
+
+            .guest-name + .guest-name {
+                font-size: 11px;
             }
 
             .photo {
-                height: 190px;
+                height: 220px;
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 767px) {
+            .page {
+                padding: 22px 14px 30px;
+            }
+
+            .heading {
+                margin-bottom: 28px;
+            }
+
+            .guest-section {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 22px;
+            }
+
+            .guest-box {
+                max-width: 420px;
+            }
+
+            .guest-box img {
+                height: 320px;
+            }
+
+            .center-text {
+                padding: 8px 0;
+            }
+
+            .center-text h2 {
+                font-size: 32px;
+            }
+
+            .gallery {
+                margin-top: 32px;
+            }
+
+            .gallery .row {
+                --bs-gutter-x: 12px;
+                --bs-gutter-y: 12px;
+            }
+
+            .photo {
+                height: 200px;
+                border-width: 4px;
+            }
+        }
+
+        /* Small Mobile */
+        @media (max-width: 400px) {
+            .page {
+                padding: 20px 10px 25px;
+            }
+
+            .heading h1 {
+                font-size: 34px;
+            }
+
+            .guest-box img {
+                height: 270px;
+            }
+
+            .guest-name {
+                font-size: 12px;
             }
 
             .center-text h2 {
                 font-size: 28px;
             }
+
+            .photo {
+                height: 155px;
+                border-width: 3px;
+                border-radius: 10px;
+            }
         }
     </style>
-    <link rel="stylesheet" href="css/event-pages.css">
 </head>
 
 <body class="event-page event-inauguration">
 
 <div class="page">
+    <main class="container-main">
 
-    <div class="container-main">
-
-        <!-- Small Heading -->
-        <div class="heading">
-
+        <!-- Main Heading -->
+        <header class="heading">
             <h1>Inauguration</h1>
-
             <div class="line"></div>
-        </div>
+        </header>
 
-
-        <!-- 2 Guest Photos -->
-        <div class="row g-4 align-items-center">
+        <!-- Centered Guest Section -->
+        <section class="guest-section">
 
             <!-- Guest 1 -->
-            <div class="col-lg-4 col-md-5">
-                <div class="guest-box">
+            <div class="guest-box">
+                <img src="assets/guest-1.jpg" alt="Guest 1">
 
-                    <!-- PHOTO 1 -->
-                    <img src="assets/guest-1.jpg" alt="Guest 1">
+                <div class="guest-name">
+                    KUVAR MANVENDRA SINGH
+                </div>
 
-                    <div class="guest-name">
-                            KUVAR MANVENDRA SINGH
-                     </div>
-
-
-                     
-                    <div class="guest-name">
-                        VIDHAN PARISHAD SABHAPATI
-                      </div>
+                <div class="guest-name">
+                    VIDHAN PARISHAD SABHAPATI
                 </div>
             </div>
-
 
             <!-- Center Text -->
-            <div class="col-lg-4 col-md-2">
-                <div class="center-text">
-
-                    <h2>Grand<br>Inauguration</h2>
-
-                    <p>
-                        A New Beginning
-                    </p>
-
-                </div>
+            <div class="center-text">
+                <h2>Grand<br>Inauguration</h2>
+                <p>A New Beginning</p>
             </div>
-
 
             <!-- Guest 2 -->
-            <div class="col-lg-4 col-md-5">
-                <div class="guest-box">
+            <div class="guest-box">
+                <img src="assets/guest-2.jpg" alt="Guest 2">
 
-                    <!-- PHOTO 2 -->
-                    <img src="assets/guest-2.jpg" alt="Guest 2">
+                <div class="guest-name">
+                    Upendra Nath Pasvan
+                </div>
 
-                    <div class="guest-name">
-                        Upendra Nath Pasvan
-                    </div>
-
-                    
-                    <div class="guest-name">
-                        BJP GRAMIN JILA ADHYAKSH
-                    </div>
-
+                <div class="guest-name">
+                    BJP GRAMIN JILA ADHYAKSH
                 </div>
             </div>
 
-        </div>
+        </section>
 
-
-        <!-- 6 Program Photos -->
-        <div class="gallery">
-
+        <!-- Program Photo Gallery -->
+        <section class="gallery">
             <div class="row g-3">
 
                 <div class="col-6 col-lg-4">
                     <div class="photo">
-                        <img src="assets/program-1.jpg" alt="Program Photo 1">
+                        <img src="assets/program-1.jpg" alt="Program Photo 1" loading="lazy">
                     </div>
                 </div>
 
                 <div class="col-6 col-lg-4">
                     <div class="photo">
-                        <img src="assets/program-2.jpg" alt="Program Photo 2">
+                        <img src="assets/program-2.jpg" alt="Program Photo 2" loading="lazy">
                     </div>
                 </div>
 
                 <div class="col-6 col-lg-4">
                     <div class="photo">
-                        <img src="assets/program-3.jpg" alt="Program Photo 3">
+                        <img src="assets/program-3.jpg" alt="Program Photo 3" loading="lazy">
                     </div>
                 </div>
 
                 <div class="col-6 col-lg-4">
                     <div class="photo">
-                        <img src="assets/program-4.jpg" alt="Program Photo 4">
+                        <img src="assets/program-4.jpg" alt="Program Photo 4" loading="lazy">
                     </div>
                 </div>
 
                 <div class="col-6 col-lg-4">
                     <div class="photo">
-                        <img src="assets/program-5.jpg" alt="Program Photo 5">
+                        <img src="assets/program-5.jpg" alt="Program Photo 5" loading="lazy">
                     </div>
                 </div>
 
                 <div class="col-6 col-lg-4">
                     <div class="photo">
-                        <img src="assets/program-6.jpg" alt="Program Photo 6">
+                        <img src="assets/program-6.jpg" alt="Program Photo 6" loading="lazy">
                     </div>
                 </div>
 
-                 <div class="col-6 col-lg-4">
+                <div class="col-6 col-lg-4">
                     <div class="photo">
-                        <img src="assets/program-7.jpg" alt="Program Photo 6">
+                        <img src="assets/program-7.jpg" alt="Program Photo 7" loading="lazy">
                     </div>
                 </div>
 
-                 <div class="col-6 col-lg-4">
+                <div class="col-6 col-lg-4">
                     <div class="photo">
-                        <img src="assets/program-8.jpg" alt="Program Photo 6">
+                        <img src="assets/program-8.jpg" alt="Program Photo 8" loading="lazy">
                     </div>
                 </div>
 
-                 <div class="col-6 col-lg-4">
+                <div class="col-6 col-lg-4">
                     <div class="photo">
-                        <img src="assets/program-9.jpg" alt="Program Photo 6">
+                        <img src="assets/program-9.jpg" alt="Program Photo 9" loading="lazy">
                     </div>
                 </div>
 
             </div>
+        </section>
 
-        </div>
-
-    </div>
-
+    </main>
 </div>
 
 </body>
