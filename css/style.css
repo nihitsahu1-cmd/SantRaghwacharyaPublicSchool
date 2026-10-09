@@ -489,6 +489,8 @@ textarea:focus-visible {
 .hero {
     position: relative;
     display: flex;
+    min-height: 660px;
+    min-height: min(740px, calc(100vh - 80px));
     min-height: min(740px, calc(100svh - 80px));
     align-items: center;
     isolation: isolate;
@@ -1567,6 +1569,8 @@ footer a:hover {
     }
 
     .hero {
+        min-height: 600px;
+        min-height: min(680px, 90vh);
         min-height: min(680px, 90svh);
     }
 
@@ -1677,6 +1681,25 @@ footer a:hover {
 }
 
 @media (max-width: 575.98px) {
+    .header .navbar {
+        gap: 10px;
+    }
+
+    .logo {
+        flex: 1 1 0;
+        gap: 10px;
+    }
+
+    .logo-text strong {
+        max-width: 100%;
+        font-size: clamp(14px, 4vw, 16px);
+        overflow-wrap: anywhere;
+    }
+
+    .menu-button {
+        flex: 0 0 auto;
+    }
+
     .section {
         padding-block: 64px;
     }
