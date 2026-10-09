@@ -18,6 +18,12 @@
         href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap"
         rel="stylesheet">
 
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+        rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -45,7 +51,7 @@
 
     <header class="header">
 
-        <div class="container navbar">
+        <div class="container navbar navbar-expand-xxl">
 
             <a href="#home" class="logo">
 
@@ -61,14 +67,16 @@
             </a>
 
 
-            <button class="menu-button" id="menuButton">
-                ☰
+            <button class="navbar-toggler menu-button" id="menuButton" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navLinks"
+                aria-controls="navLinks" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="bi bi-list" aria-hidden="true"></i>
             </button>
 
 
-            <nav>
+            <nav class="navbar-collapse collapse" id="navLinks">
 
-                <ul class="nav-links" id="navLinks">
+                <ul class="nav-links">
 
                     <li>
                         <a href="#home">Home</a>
@@ -116,7 +124,7 @@
                     </li>
 
                     <li>
-                        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to night mode" title="Switch to night mode" aria-pressed="false">☾</button>
+                        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to night mode" title="Switch to night mode" aria-pressed="false"><i class="bi bi-moon-stars-fill" aria-hidden="true"></i></button>
                     </li>
 
                 </ul>
@@ -201,7 +209,7 @@
 
             <div class="container">
 
-                <div class="feature-grid" id="featureGrid">
+                <div class="feature-grid row g-4" id="featureGrid">
                     <!-- JS -->
                 </div>
 
@@ -291,7 +299,7 @@
                 </div>
 
 
-                <div class="leaders-grid" id="leadersGrid">
+                <div class="leaders-grid row g-4" id="leadersGrid">
                     <!-- JS -->
                 </div>
 
@@ -381,7 +389,7 @@
                 </div>
 
 
-                <div class="academic-grid" id="academicGrid">
+                <div class="academic-grid row g-4" id="academicGrid">
                     <!-- JS -->
                 </div>
 
@@ -394,7 +402,7 @@
 
         <section class="stats-section">
 
-            <div class="container stats-grid" id="statsGrid">
+            <div class="container stats-grid row row-cols-2 row-cols-md-4 g-4" id="statsGrid">
                 <!-- JS -->
             </div>
 
@@ -425,7 +433,7 @@
                 </div>
 
 
-                <div class="life-grid" id="lifeGrid">
+                <div class="life-grid row g-4" id="lifeGrid">
                     <!-- JS -->
                 </div>
 
@@ -452,7 +460,7 @@
 
                 </div>
 
-                <div class="gallery-grid" id="galleryGrid">
+                <div class="gallery-grid row g-3" id="galleryGrid">
                     <!-- JS -->
                 </div>
 
@@ -596,9 +604,10 @@
 
                         <form id="enquiryForm">
 
-                            <div class="form-row">
+                            <div class="form-row row g-3">
 
                                 <input
+                                    class="form-control col-md-6"
                                     type="text"
                                     name="parent"
                                     placeholder="Parent's Name"
@@ -606,6 +615,7 @@
                                 >
 
                                 <input
+                                    class="form-control col-md-6"
                                     type="tel"
                                     name="phone"
                                     placeholder="Phone Number"
@@ -615,9 +625,10 @@
                             </div>
 
 
-                            <div class="form-row">
+                            <div class="form-row row g-3">
 
                                 <input
+                                    class="form-control col-md-6"
                                     type="email"
                                     name="email"
                                     placeholder="Email Address"
@@ -625,7 +636,7 @@
                                 >
 
 
-                                <select name="class" required>
+                                <select class="form-select col-md-6" name="class" required>
 
                                     <option value="">
                                         Select Class
@@ -653,16 +664,14 @@
 
 
                             <textarea
+                                class="form-control"
                                 name="message"
                                 placeholder="Your Message"
                                 required
                             ></textarea>
 
 
-                            <button
-                                type="submit"
-                                class="btn btn-primary"
-                            >
+                            <button type="submit" class="btn btn-primary">
                                 Submit Enquiry
                             </button>
 
@@ -818,6 +827,7 @@
     </div>
 
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/script.js"></script>
 
 </body>

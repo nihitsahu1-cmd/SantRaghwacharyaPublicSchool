@@ -82,6 +82,36 @@ function renderWebsite() {
     renderContact();
 
     renderFooter();
+
+    initRevealAnimations();
+}
+
+
+function initRevealAnimations() {
+    if (!("IntersectionObserver" in window) ||
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        return;
+    }
+
+    const elements = document.querySelectorAll(
+        ".section-heading, .about-image, .about-content, .feature-grid > *, " +
+        ".leaders-grid > *, .vision-card, .academic-grid > *, .stat, " +
+        ".life-grid > *, .gallery-grid > *, .admission-box, .contact-info, .contact-form"
+    );
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12, rootMargin: "0px 0px -36px 0px" });
+
+    elements.forEach(element => {
+        element.classList.add("reveal");
+        observer.observe(element);
+    });
 }
 
 
@@ -105,7 +135,9 @@ function initThemeToggle() {
         const isNight =
             document.documentElement.dataset.theme === "dark";
 
-        button.textContent = isNight ? "☀" : "☾";
+        button.innerHTML = isNight
+            ? '<i class="bi bi-sun-fill" aria-hidden="true"></i>'
+            : '<i class="bi bi-moon-stars-fill" aria-hidden="true"></i>';
         button.setAttribute("aria-pressed", String(isNight));
         button.setAttribute("aria-label", isNight ? "Switch to day mode" : "Switch to night mode");
         button.title = isNight ? "Switch to day mode" : "Switch to night mode";
@@ -277,20 +309,12 @@ function renderFeatures() {
 
             return `
 
-                <div class="feature-card">
-
-                    <div class="feature-icon">
-                        ${feature.icon}
-                    </div>
-
-                    <h3>
-                        ${feature.title}
-                    </h3>
-
-                    <p>
-                        ${feature.description}
-                    </p>
-
+                <div class="col-md-6 col-xl-4">
+                    <article class="feature-card card h-100">
+                        <div class="feature-icon">${feature.icon}</div>
+                        <h3>${feature.title}</h3>
+                        <p>${feature.description}</p>
+                    </article>
                 </div>
 
             `;
@@ -345,35 +369,16 @@ function renderLeadership() {
 
             return `
 
-                <div class="leader-card">
-
-                    <img
-                        src="${person.image}"
-                        alt="${person.name}"
-                    >
-
-                    <div class="leader-content">
-
-                        <span class="leader-role">
-                            ${person.role}
-                        </span>
-
-                        <h3>
-                            ${person.name}
-                        </h3>
-
-                        <p>
-                            ${person.message}
-                        </p>
-
-                        <br>
-
-                        <strong>
-                            With Best Wishes
-                        </strong>
-
-                    </div>
-
+                <div class="col-md-6 col-lg-4">
+                    <article class="leader-card card h-100">
+                        <img src="${person.image}" alt="${person.name}" loading="lazy">
+                        <div class="leader-content">
+                            <span class="leader-role">${person.role}</span>
+                            <h3>${person.name}</h3>
+                            <p>${person.message}</p>
+                            <strong>With Best Wishes</strong>
+                        </div>
+                    </article>
                 </div>
 
             `;
@@ -416,20 +421,12 @@ function renderAcademics() {
 
             return `
 
-                <div class="academic-card">
-
-                    <span class="academic-number">
-                        ${number}
-                    </span>
-
-                    <h3>
-                        ${item.title}
-                    </h3>
-
-                    <p>
-                        ${item.description}
-                    </p>
-
+                <div class="col-sm-6 col-xl-3">
+                    <article class="academic-card card h-100">
+                        <span class="academic-number">${number}</span>
+                        <h3>${item.title}</h3>
+                        <p>${item.description}</p>
+                    </article>
                 </div>
 
             `;
@@ -453,7 +450,7 @@ function renderStats() {
 
             return `
 
-                <div class="stat">
+                <div class="stat col">
 
                     <strong>
                         ${stat.number}
@@ -486,30 +483,15 @@ function renderSchoolLife() {
 
             return `
 
-                <div
-                    class="life-card"
-                    style="
-                        background-image:
-                        url('${item.image}');
-                    "
-                >
-
-                    <div class="life-overlay">
-
-                        <div>
-
-                            <h3>
-                                ${item.title}
-                            </h3>
-
-                            <p>
-                                ${item.description}
-                            </p>
-
+                <div class="col-md-6">
+                    <article class="life-card card" style="background-image: url('${item.image}');">
+                        <div class="life-overlay">
+                            <div>
+                                <h3>${item.title}</h3>
+                                <p>${item.description}</p>
+                            </div>
                         </div>
-
-                    </div>
-
+                    </article>
                 </div>
 
             `;
@@ -531,7 +513,7 @@ function renderGallery() {
         schoolData.gallery.map((image, index) => {
 
             return `
-                <figure class="gallery-item">
+                <figure class="gallery-item col-6 col-lg-4">
                     <img src="${image}" alt="School gallery photo ${index + 1}" loading="lazy">
                 </figure>
             `;
@@ -622,10 +604,6 @@ function renderFooter() {
    MOBILE MENU
 ========================================================= */
 
-const menuButton =
-    document.getElementById("menuButton");
-
-
 const navLinks =
     document.getElementById("navLinks");
 
@@ -645,16 +623,6 @@ activityToggle.addEventListener("click", () => {
 });
 
 
-menuButton.addEventListener(
-    "click",
-    () => {
-
-        navLinks.classList.toggle("active");
-
-    }
-);
-
-
 document.querySelectorAll(
     ".nav-links a"
 ).forEach(link => {
@@ -663,7 +631,7 @@ document.querySelectorAll(
         "click",
         () => {
 
-            navLinks.classList.remove("active");
+            bootstrap.Collapse.getOrCreateInstance(navLinks).hide();
             activityMenuItem.classList.remove("open");
             activityToggle.setAttribute("aria-expanded", "false");
 

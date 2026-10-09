@@ -1,0 +1,250 @@
+.event-page {
+    --event-ink: #253b4d;
+    --event-muted: #687d8d;
+    --event-paper: #f4f7fa;
+    --event-accent: #c0842c;
+    --event-card: #fff;
+    min-height: 100vh;
+    color: var(--event-ink);
+    background:
+        radial-gradient(ellipse at 12% 0%, rgba(232, 168, 56, .13), transparent 34%),
+        var(--event-paper);
+    font-family: "DM Sans", "Segoe UI", Arial, sans-serif;
+}
+
+.event-page.event-swimming {
+    --event-accent: #1685a7;
+    --event-paper: #eef8fb;
+}
+
+.event-page.event-snack {
+    --event-accent: #d56832;
+    --event-paper: #fff6ef;
+}
+
+.event-page.event-inauguration {
+    --event-accent: #966b27;
+    --event-paper: #f7f3e9;
+}
+
+.event-page.event-annual {
+    --event-accent: #4467b3;
+    --event-paper: #f3f5fb;
+}
+
+.event-page .page {
+    max-width: 1240px;
+    padding: clamp(26px, 5vw, 56px) 24px 64px;
+}
+
+.event-page .heading {
+    margin-bottom: clamp(26px, 4vw, 42px);
+}
+
+.event-page .heading h1,
+.event-annual header h1 {
+    color: var(--event-accent);
+    font-size: clamp(36px, 6vw, 68px);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -.045em;
+    text-wrap: balance;
+}
+
+.event-page .heading p,
+.event-annual header p {
+    margin-top: 12px;
+    color: var(--event-muted);
+    font-size: clamp(15px, 2vw, 18px);
+}
+
+.event-page .big-photo,
+.event-page .photo,
+.event-page .guest-box,
+.event-page .event-annual .photo {
+    overflow: hidden;
+    border: 1px solid rgba(28, 54, 76, .08);
+    border-radius: 22px;
+    background: var(--event-card);
+    box-shadow: 0 16px 42px rgba(26, 52, 73, .12);
+}
+
+.event-page .big-photo {
+    height: clamp(300px, 47vw, 580px);
+    border: 6px solid var(--event-card);
+}
+
+.event-page .big-photo img,
+.event-page .photo img,
+.event-page .guest-box img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .45s ease;
+}
+
+.event-page .big-photo:hover img,
+.event-page .photo:hover img,
+.event-page .guest-box:hover img {
+    transform: scale(1.035);
+}
+
+.event-page .photo {
+    height: clamp(170px, 22vw, 260px);
+    border: 5px solid var(--event-card);
+    border-radius: 18px;
+}
+
+.event-page .guest-box {
+    padding: 8px;
+}
+
+.event-page .guest-box img {
+    height: clamp(230px, 32vw, 390px);
+    border-radius: 15px;
+}
+
+.event-page .guest-name {
+    padding: 11px 6px 3px;
+    color: var(--event-ink);
+    font-size: 14px;
+    text-align: center;
+}
+
+.event-page .guest-name + .guest-name {
+    padding-top: 2px;
+    color: var(--event-muted);
+    font-size: 12px;
+    letter-spacing: .05em;
+}
+
+.event-page .heading .line {
+    width: 74px;
+    height: 4px;
+    margin: 20px auto 0;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--event-accent), #f0bd68);
+}
+
+.event-page .center-text h2 {
+    color: var(--event-ink);
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 700;
+    letter-spacing: -.035em;
+}
+
+.event-page .center-text p {
+    color: var(--event-muted);
+    font-size: 14px;
+}
+
+.event-page .gallery {
+    margin-top: clamp(32px, 5vw, 54px);
+}
+
+.event-page .intro {
+    margin-bottom: 34px;
+}
+
+.event-page .intro h2 {
+    color: var(--event-ink);
+    font-size: clamp(28px, 4vw, 38px);
+    font-weight: 700;
+    letter-spacing: -.03em;
+}
+
+.event-annual header {
+    padding: clamp(38px, 6vw, 68px) 20px;
+    background:
+        linear-gradient(120deg, rgba(20, 44, 83, .96), rgba(68, 103, 179, .92)),
+        radial-gradient(ellipse at 80% 0%, rgba(255, 255, 255, .2), transparent 40%);
+}
+
+.event-annual header h1,
+.event-annual header p {
+    color: #fff;
+}
+
+.event-annual .container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 46px 24px 0;
+}
+
+.event-annual .gallery {
+    gap: 22px;
+}
+
+.event-annual .photo {
+    padding: 9px;
+    border-radius: 18px;
+}
+
+.event-annual .photo img {
+    height: clamp(190px, 20vw, 250px);
+    border-radius: 12px;
+}
+
+.event-annual .caption {
+    color: var(--event-ink);
+}
+
+.event-annual footer {
+    margin-top: 56px;
+    background: #172d45;
+}
+
+@media (max-width: 767.98px) {
+    .event-page .page {
+        padding: 26px 16px 44px;
+    }
+
+    .event-page .big-photo {
+        height: 340px;
+    }
+
+    .event-page .photo {
+        height: 200px;
+    }
+
+    .event-page .center-text {
+        padding: 14px 8px;
+    }
+
+    .event-page .guest-box img {
+        height: 300px;
+    }
+
+    .event-annual .container {
+        padding: 34px 18px 0;
+    }
+
+    .event-annual .gallery {
+        gap: 16px;
+    }
+}
+
+@media (max-width: 450px) {
+    .event-page .big-photo {
+        height: 270px;
+    }
+
+    .event-page .photo {
+        height: 165px;
+    }
+
+    .event-page .guest-box img {
+        height: 260px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .event-page *,
+    .event-page *::before,
+    .event-page *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+    }
+}
